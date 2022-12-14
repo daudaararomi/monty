@@ -110,3 +110,5 @@ gcc -Wall -Werror -Wextra -pedantic *.c -o monty
 * opcodes: sub, div, mul, mod, comments, pchar, pstr, rotl, rotr, stack, queue, Holberton, Add two digits, Multiplication, Multiplication level up
 
 ---
+## Author
+* **Araromi, Dauda Olurotimi ** - [daudaararomi](https://github.com/daudaararomi]
