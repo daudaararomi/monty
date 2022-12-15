@@ -1,5 +1,4 @@
 #include "monty.h"
-int num;
 /**
  * _push - adds a new element to the top of the stack
  * @stack: stack
@@ -8,43 +7,34 @@ int num;
 
 void _push(stack_t **stack, unsigned int line_number)
 {
-	stack_t *top;
 	(void)line_number;
-	top = malloc(sizeof(stack_t));
-	if (top == NULL)
-	{
-		printf("Error: malloc failed\n");
-		free_list(stack);
-		free(stack);
-		exit(EXIT_FAILURE);
-	}
-
-	top->n = num;
-	top->prev = NULL;
-	if (*stack != NULL)
-	{
-		(*stack)->prev = top;
-		top->next = *stack;
-	}
-	else
-		top->next = NULL;
-	*stack = top;
-}
-
-void _pop(stack_t **stack, unsigned int line_number)
-{
-	stack_t *top = *stack;
+	stack_t *tmp;
 
 	if (stack == NULL || *stack == NULL)
-	{
-		printf("L%u: can't pop an empty stack\n", line_number);
-		free_list(stack);
-		free(stack);
-		exit(EXIT_FAILURE);
-	}
+		more_err(7, line_number);
 
-	*stack = top->next;
+	tmp = *stack;
+	*stack = tmp->next;
 	if (*stack != NULL)
 		(*stack)->prev = NULL;
-	free(top);
+	free(tmp);
+}
+
+/**
+ * _pall - prints all the values on the stack starting from the top
+ * @stack: stack
+ * @line_number: line number
+ */
+
+void _pall(stack_t **stack, unsigned int line_number)
+{
+	stack_t *run_stack = *stack;
+
+	(void)line_number;
+
+	while (run_stack != NULL)
+	{
+		printf("%d\n", run_stack->n);
+		run_stack = run_stack->next;
+	}
 }
