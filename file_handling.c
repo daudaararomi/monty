@@ -1,5 +1,5 @@
 #include "monty.h"
-
+#include <stdio.h>
 /**
  * open_file - Opens a file.
  * @file_name: String with the name of the file.
@@ -33,22 +33,21 @@ void open_file(char *file_name)
 
 void read_file(FILE *fd)
 {
-	int line_n;
+	int line_n = 1;
 	int format;
 	char *lineprt;
-	size_t n;
 
 	lineprt = NULL;
-	n = 0;
 	format = 0;
 
 	if (fd == NULL)
 		err(2, "file_name");
 
 	/*Getting each line in the file*/
-	for (line_n = 1; getline(&lineprt, &n, fd) != EOF; line_n++)
+       	while (fgetc(fd) != EOF)
 	{
 		format = interpret_line(lineprt, line_n, format);
+		line_n++;
 	}
 	free(lineprt);
 }
@@ -102,14 +101,26 @@ void find_func(char *opcode, char *value, int ln, int format)
 	int flag;
 
 	instruction_t func_list[] = {
-		{"push", _push},
-		{"pall", _pall},
+		{"push", push},
+		{"pall", pall},
+		{"pint", print_top},
+		{"pop", pop_top},
+		{"nop", nop},
+		{"swap", swap_nodes},
+		{"add", add_nodes},
+		{"sub", sub_nodes},
+		{"div", div_nodes},
+		{"mul", mul_nodes},
+		{"mod", mod_nodes},
+		{"pchar", print_char},
+		{"pstr", print_str},
+		{"rotl", rotl},
+		{"rotr", rotr},
 		{NULL, NULL}
 	};
-
 	if (opcode[0] == '#')
 		return;
-	/*Iterates to find the desired function*/
+	/*Iterates through list to find the right function*/
 	for (flag = 1, i = 0; func_list[i].opcode != NULL; i++)
 	{
 		/*When 0 found the right opcode*/
@@ -155,11 +166,11 @@ void call_fun(op_func f, char *op, char *val, int ln, int format)
 			if (isdigit(val[i]) == 0)
 				err(5, ln);
 		}
-		node = create_node(atoi(val) * flag);
+			node = create_node(atoi(val) * flag);
 		if (format == 0)
 			f(&node, ln);
 		if (format == 1)
-			add_to_queue(&node, ln);
+		  add_to_queue(&node, ln);
 	}
 	else
 		f(&head, ln);
