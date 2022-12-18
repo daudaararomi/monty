@@ -3,7 +3,7 @@
 /**
  * push - pushes a node to the top of stack
  * @stack: pointer to the head node pointer of stack
- * @nline: the line number
+ * @nl: the line number
  *
  * Return: Nothing.
  */
@@ -36,7 +36,7 @@ void push(stack_t **stack, unsigned int nl)
 /**
  * pall - prints the data of all nodes in stack
  * @stack: pointer to the head node pointer of stack
- * @nline: the line number
+ * @nl: the line number
  *
  * Return: Nothing.
  */
@@ -76,7 +76,7 @@ void free_stack(stack_t **stack)
 /**
  * nop - does literally nothing
  * @stack: pointer to the head node pointer of stack
- * @nline: the line number
+ * @nl: the line number
  * Return: Nothing.
  */
 void nop(stack_t **stack, unsigned int nl)

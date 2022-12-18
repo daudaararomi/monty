@@ -1,10 +1,9 @@
 #include "monty.h"
 
- argvg_t ar = {0, 0};
-
+argvg_t ar = {0, 0};
 /**
  *check_comment - checks if line is a comment
- * @line: struct containing line contents and line number
+ * @linecon: struct containing line contents and line number
  *
  * Return: true if comment, else false
  */
@@ -26,8 +25,8 @@ bool check_comment(linecon_t linecon)
 }
 
 /**
- * argument_check - verifies argument is valid
- * @token: the argument to be checked
+ * valid_argument - verifies argument is valid
+ * @tok: the argument to be checked
  *
  * Return: true if valid argument, else false
  */
@@ -54,15 +53,14 @@ bool valid_argument(char *tok)
 /**
  * check_push - check if push opcode is being used and sets global
  * argument variable if true
- * @line: struct containing line contents and line number
+ * @linecon: struct containing line contents and line number
  * @opcode: the opcode to compare
- * @meta: struct containing all allocated memory
+ * @stackfile: struct containing all allocated memory
  *
  * Return: Nothing.
  */
 void check_push(linecon_t linecon, stackfile_t *stackfile, char *opcode)
 {
-
 	if ((strcmp(opcode, "push") == 0) && !valid_argument(linecon.artok[1]))
 	{
 		free(linecon.artok);

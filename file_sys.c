@@ -37,7 +37,7 @@ void tokenline(linecon_t *ln, char *buffer)
  */
 void parse_file(FILE *file)
 {
-       	stackfile_t *stackfile = NULL;
+	stackfile_t *stackfile = NULL;
 	linecon_t linecon;
 
 	stackfile = malloc(sizeof(stackfile_t));
