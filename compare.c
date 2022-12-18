@@ -3,7 +3,7 @@
  * get_op_func - function searches for a match between opcode and text
  * and returns the corresponding function
  * @line: struct containing line contents and line number
- * @meta: struct containing all allocated memory
+ * @stackfile: struct containing all allocated memory
  * Return: pointer to the matching function
  */
 void (*get_op_func(linecon_t line, stackfile_t *stackfile))(stack_t **, unsigned int)
@@ -15,8 +15,8 @@ void (*get_op_func(linecon_t line, stackfile_t *stackfile))(stack_t **, unsigned
 		{NULL, NULL}
 	};
 
-	/*if (check_comment(line))
-		return (nop); */
+	if (check_comment(line))
+		return (nop); 
 	while (ops[i].opcode)
 	{
 		if (strcmp(ops[i].opcode, line.artok[0]) == 0)
