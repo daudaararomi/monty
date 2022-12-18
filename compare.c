@@ -12,6 +12,7 @@ void (*get_op_func(linecon_t line, stackfile_t *stackfile))(stack_t **, unsigned
 	instruction_t ops[] = {
 		{"push", push},
 		{"pall", pall},
+		{"pint", pint},
 		{NULL, NULL}
 	};
 
