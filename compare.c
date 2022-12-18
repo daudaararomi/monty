@@ -16,7 +16,7 @@ void (*get_op_func(linecon_t line, stackfile_t *stackfile))(stack_t **, unsigned
 	};
 
 	if (check_comment(line))
-		return (nop); 
+		return (nop);
 	while (ops[i].opcode)
 	{
 		if (strcmp(ops[i].opcode, line.artok[0]) == 0)
@@ -34,8 +34,7 @@ void (*get_op_func(linecon_t line, stackfile_t *stackfile))(stack_t **, unsigned
 		}
 		i++;
 	}
-       	fprintf(stderr, "L%d: unknown instruction %s\n", line.n,
-		line.artok[0]);
+	fprintf(stderr, "L%d: unknown instruction %s\n", line.n, line.artok[0]);
 	free(line.artok);
 	free(stackfile->buffer);
 	free_stack(&(stackfile->stack));
